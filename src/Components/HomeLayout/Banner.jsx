@@ -2,6 +2,8 @@ import React, { useEffect, useRef } from "react";
 import { GoDotFill } from "react-icons/go";
 import { gsap } from "gsap";
 import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
+import ImageSlider from "../ImageSlider/ImageSlider";
+import { div } from "framer-motion/client";
 
 gsap.registerPlugin(ScrambleTextPlugin);
 
@@ -26,7 +28,9 @@ const Banner = () => {
   }, []);
 
   return (
-    <section className="relative w-full px-6 py-12 overflow-hidden bg-gradient-to-b from-black via-gray-900 to-black">
+   
+    <div>
+       <section className="relative w-full px-6 py-12 overflow-hidden bg-gradient-to-b from-black via-gray-900 to-black">
       <div className="container flex flex-col items-center gap-10 mx-auto md:flex-row md:gap-8">
         
         {/* ---------- LEFT TEXT ---------- */}
@@ -72,7 +76,7 @@ const Banner = () => {
               <h3 className="py-2 text-white">Last Winner</h3>
             </div>
 
-          {/* ----- CARD 1 ----- */}
+          {/*  CARD 1  */}
           <div className="flex flex-col gap-3 cursor-pointer transform transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(255,165,0,0.5)]">
             <div className="border-t border-white/20"></div>
             <div className="flex items-center gap-6 px-4 py-4">
@@ -88,7 +92,7 @@ const Banner = () => {
             </div>
           </div>
 
-          {/* ----- CARD 2 ----- */}
+          {/* CARD 2 */}
           <div className="flex flex-col gap-3 cursor-pointer transform transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(255,165,0,0.5)]">
             <div className="border-t border-white/20"></div>
             <div className="flex items-center gap-6 px-4 py-4">
@@ -104,7 +108,7 @@ const Banner = () => {
             </div>
           </div>
 
-          {/* ----- CARD 3 ----- */}
+          {/* CARD 3  */}
           <div className="flex flex-col gap-3 cursor-pointer transform transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(255,165,0,0.5)]">
             <div className="border-t border-white/20"></div>
             <div className="flex items-center gap-6 px-4 py-4">
@@ -122,7 +126,11 @@ const Banner = () => {
 
         </div>
       </div>
-    </section>
+      </section>
+     
+     <ImageSlider></ImageSlider>
+    </div>
+    
   );
 };
 
