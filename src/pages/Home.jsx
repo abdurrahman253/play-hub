@@ -5,30 +5,30 @@ import NewsLetter from "../Components/HomeLayout/NewsLetter";
 import { useLoaderData, useLocation } from "react-router-dom";
 
 const Home = () => {
-  const games = useLoaderData();
+    const games = useLoaderData();
     const location = useLocation();
 
-     useEffect(() => {
+    useEffect(() => {
         if (location.hash) {
-            const element = document.getElementById(location.hash.substring(1));
+           const element = document.getElementById(location.hash.substring(1));
             if (element) {
-             
                 setTimeout(() => {
                     element.scrollIntoView({ behavior: 'smooth' });
                 }, 100); 
             }
+        } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-    }, [location.hash]);
-  
+    }, [location]); 
 
-  return (
-    <div className="mt-10">
-      <Banner />
-      <PopularGames games={games} />
-      <NewsLetter />
-    </div>
-  );
+    return (
+       
+        <div id="top" className="mt-10"> 
+            <Banner />
+            <PopularGames games={games} />
+            <NewsLetter />
+        </div>
+    );
 };
 
 export default Home;
-
