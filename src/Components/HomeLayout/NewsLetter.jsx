@@ -21,7 +21,7 @@ const NewsLetter = () => {
   return (
     <section
     id="newsletter-section"
-    className="relative w-11/12 mx-auto my-20 overflow-hidden">
+    className="relative w-11/12 mx-auto my-20 overflow-hidden scroll-mt-24">
       {/* Background Glow Effects */}
       <div className="absolute top-0 rounded-full left-1/4 w-96 h-96 bg-orange-500/20 blur-3xl animate-pulse"></div>
       <div className="absolute bottom-0 rounded-full right-1/4 w-96 h-96 bg-red-500/20 blur-3xl animate-pulse"></div>

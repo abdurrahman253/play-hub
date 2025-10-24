@@ -23,7 +23,7 @@ const Home = () => {
 
     return (
        
-        <div id="top" className="mt-10"> 
+        <div id="top" className="mt-10 scroll-mt-20"> 
             <Banner />
             <PopularGames games={games} />
             <NewsLetter />

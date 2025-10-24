@@ -63,9 +63,15 @@ const Footer = () => {
           {/* Brand Section */}
           <motion.div variants={itemVariants} className="space-y-4 md:col-span-2">
             <div className="flex items-center gap-3">
-              <div className="relative p-3 overflow-hidden bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl">
+              <div className="relative p-3 overflow-hidden rounded-xl">
                 <div className="absolute inset-0 bg-black/20"></div>
-                <span className="relative text-3xl font-black text-white">P</span>
+                <img 
+                  src="	https://gameplexnext.softivuslab.com/_next/static/media/favicon.395cfa38.png" 
+                  alt="PlayHub Logo" 
+                   className="w-10 h-10 transition-all duration-300 group-hover:scale-110 drop-shadow-lg"
+                 />
+       
+               
               </div>
               <h1 className="text-3xl font-black tracking-tight text-white">
                 Play<span className="text-transparent bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text">Hub</span>

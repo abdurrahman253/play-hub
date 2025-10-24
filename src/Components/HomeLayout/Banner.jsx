@@ -29,7 +29,7 @@ const Banner = () => {
 
   return (
    
-    <div>
+    <div id="top">
        <section className="relative w-full px-6 py-12 overflow-hidden bg-gradient-to-b from-black via-gray-900 to-black">
       <div className="container flex flex-col items-center gap-10 mx-auto md:flex-row md:gap-8">
         

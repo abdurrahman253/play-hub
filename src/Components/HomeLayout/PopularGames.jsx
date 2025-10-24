@@ -41,7 +41,7 @@ const PopularGames = ({ games }) => {
   return (
     <section
      id="popular-games-section"
-    className="w-11/12 py-16 mx-auto text-white bg-gradient-to-b from-black via-gray-900 to-black">
+    className="w-11/12 py-16 mx-auto text-white bg-gradient-to-b from-black via-gray-900 to-black scroll-mt-24">
       <div className="mb-12 text-center">
         <h2 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-red-500 to-yellow-400 drop-shadow-[0_0_30px_rgba(255,165,0,0.5)]">
           🔥 POPULAR GAMES
