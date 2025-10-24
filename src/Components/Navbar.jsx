@@ -52,7 +52,7 @@ const Navbar = () => {
       className="fixed top-0 z-50 w-full border-b shadow-md bg-gradient-to-r from-black via-gray-900 to-black border-orange-500/30"
     >
       <div className="flex items-center justify-between w-11/12 py-3 mx-auto">
-        {/*  Left - Logo */}
+        {/* Left - Logo */}
         <Link to="/" className="flex items-center gap-2">
           <div className="p-2 bg-orange-500 rounded-lg">
             <span className="text-2xl font-extrabold text-white">P</span>
@@ -62,9 +62,10 @@ const Navbar = () => {
           </h1>
         </Link>
 
-        {/* ✅ Center - Links + Buttons (Desktop) */}
+        {/* Center - Links + Buttons (Desktop) */}
         <div className="items-center hidden gap-3 md:flex">
           {navLinks}
+
           {!user ? (
             <>
               <Link
@@ -84,8 +85,7 @@ const Navbar = () => {
             <div className="relative cursor-pointer group">
               <img
                 src={
-                  user?.photoURL ||
-                  "https://i.ibb.co/Yt9Y6H9/default-avatar.png"
+                  user?.photoURL || "https://i.ibb.co/Yt9Y6H9/default-avatar.png"
                 }
                 alt="profile"
                 onClick={() => navigate("/profile")}
@@ -104,7 +104,7 @@ const Navbar = () => {
           )}
         </div>
 
-        {/* ✅ Mobile Menu Button */}
+        {/* Mobile Menu Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="text-white md:hidden"
@@ -113,10 +113,11 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* ✅ Mobile Menu */}
+      {/* Mobile Menu */}
       {isOpen && (
         <div className="flex flex-col items-center w-full gap-2 pb-4 bg-gray-900 md:hidden">
           {navLinks}
+
           {!user ? (
             <>
               <Link
@@ -138,8 +139,7 @@ const Navbar = () => {
             <div className="flex flex-col items-center gap-2">
               <img
                 src={
-                  user?.photoURL ||
-                  "https://i.ibb.co/Yt9Y6H9/default-avatar.png"
+                  user?.photoURL || "https://i.ibb.co/Yt9Y6H9/default-avatar.png"
                 }
                 alt="profile"
                 className="w-10 h-10 border-2 border-orange-500 rounded-full"

@@ -11,8 +11,8 @@ const HomeLayout = () => {
         <Navbar />
       </header>
 
-      {/* Main Page Content */}
-      <main className="flex-grow w-11/12 py-6 mx-auto md:py-10">
+      {/* Main Page Content - Added pt-24 to create space for fixed navbar */}
+      <main className="flex-grow w-11/12 py-6 mx-auto md:py-10 pt-24">
         <Outlet />
       </main>
 
