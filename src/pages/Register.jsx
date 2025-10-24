@@ -45,7 +45,7 @@ const Register = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-[80vh] px-4">
+    <div className="flex items-center justify-center mt-10 min-h-[80vh] px-4">
       <div className="w-full max-w-md p-8 space-y-6 border shadow-lg bg-white/10 rounded-2xl backdrop-blur-md border-orange-500/30">
         <h2 className="text-3xl font-extrabold text-center text-orange-400">
           Create Account
@@ -132,7 +132,7 @@ const Register = () => {
         <p className="text-center text-gray-400">
           Already have an account?{" "}
           <Link
-            to="/login"
+            to="/auth/login"
             className="font-semibold text-orange-400 hover:text-orange-500"
           >
             Login

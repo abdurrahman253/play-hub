@@ -14,37 +14,49 @@ const Login = () => {
   const provider = new GoogleAuthProvider();
   const auth = getAuth(app);
 
-  const handleLogin = (e) => {
+  // 🔹 Handle Email/Password Login
+  const handleLogin = async (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
     setError("");
 
-    signIn(email, password)
-      .then(() => {
-        navigate(from, { replace: true });
-      })
-      .catch((err) => setError(err.message));
+    try {
+      await signIn(email, password);
+      navigate(from, { replace: true });
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
-  const handleGoogleLogin = () => {
-    signInWithPopup(auth, provider)
-      .then(() => navigate(from, { replace: true }))
-      .catch((err) => setError(err.message));
+  // 🔹 Handle Google Login
+  const handleGoogleLogin = async () => {
+    try {
+      await signInWithPopup(auth, provider);
+      navigate(from, { replace: true });
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
   return (
-    <div className="flex items-center justify-center min-h-[80vh] px-4">
-      <div className="w-full max-w-md p-8 space-y-6 border shadow-lg bg-white/10 rounded-2xl backdrop-blur-md border-orange-500/30">
+    <div className="flex items-center justify-center min-h-[85vh] px-4 bg-gradient-to-b from-black via-gray-900 to-black">
+      <div className="w-full max-w-md p-8 space-y-6 border shadow-xl bg-white/10 rounded-2xl backdrop-blur-md border-orange-500/30">
+        {/* Title */}
         <h2 className="text-3xl font-extrabold text-center text-orange-400">
-          Welcome Back
+          Welcome Back 👋
         </h2>
+        <p className="text-sm text-center text-gray-400">
+          Log in to continue your gaming journey
+        </p>
 
+        {/* Form */}
         <form onSubmit={handleLogin} className="space-y-4">
+          {/* Email */}
           <div>
             <label className="block mb-1 text-sm text-gray-300">Email</label>
-            <div className="flex items-center gap-2 p-2 bg-gray-800 rounded-lg">
+            <div className="flex items-center gap-2 p-2 bg-gray-800 rounded-lg focus-within:ring-2 focus-within:ring-orange-500">
               <FaEnvelope className="text-orange-400" />
               <input
                 type="email"
@@ -56,9 +68,10 @@ const Login = () => {
             </div>
           </div>
 
+          {/* Password */}
           <div>
             <label className="block mb-1 text-sm text-gray-300">Password</label>
-            <div className="flex items-center gap-2 p-2 bg-gray-800 rounded-lg">
+            <div className="flex items-center gap-2 p-2 bg-gray-800 rounded-lg focus-within:ring-2 focus-within:ring-orange-500">
               <FaLock className="text-orange-400" />
               <input
                 type="password"
@@ -68,34 +81,50 @@ const Login = () => {
                 placeholder="Enter your password"
               />
             </div>
+
+            {/* Forgot Password */}
+            <div className="mt-2 text-right">
+              <Link
+                to="/forget-password"
+                className="text-sm text-orange-400 hover:text-orange-500"
+              >
+                Forgot password?
+              </Link>
+            </div>
           </div>
 
+          {/* Error Message */}
           {error && (
-            <p className="text-sm text-center text-red-400">{error}</p>
+            <p className="py-2 text-sm text-center text-red-400 rounded-md bg-red-950/30">
+              ⚠ {error}
+            </p>
           )}
 
+          {/* Login Button */}
           <button
             type="submit"
-            className="w-full py-2 font-bold text-black transition-all bg-orange-500 rounded-lg hover:bg-orange-600"
+            className="w-full py-2 font-bold text-black transition-all duration-300 bg-orange-500 rounded-lg hover:bg-orange-600 hover:scale-[1.02]"
           >
             Login
           </button>
         </form>
 
+        {/* Google Login */}
         <button
           onClick={handleGoogleLogin}
-          className="flex items-center justify-center w-full gap-2 py-2 mt-2 font-semibold text-white transition-all bg-gray-800 rounded-lg hover:bg-gray-700"
+          className="flex items-center justify-center w-full gap-2 py-2 mt-3 font-semibold text-white transition-all duration-300 bg-gray-800 rounded-lg hover:bg-gray-700"
         >
-          <FaGoogle className="text-orange-400" /> Login with Google
+          <FaGoogle className="text-orange-400" /> Continue with Google
         </button>
 
+        {/* Register Link */}
         <p className="text-center text-gray-400">
           New here?{" "}
           <Link
-            to="/register"
+            to="/auth/register"
             className="font-semibold text-orange-400 hover:text-orange-500"
           >
-            Register Now
+            Create an account
           </Link>
         </p>
       </div>

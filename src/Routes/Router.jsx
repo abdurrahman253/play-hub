@@ -6,8 +6,13 @@ import GameDetails from "../pages/GameDetails";
 import AuthLayout from "../Layouts/AuthLayout";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import PrivateRoute from "../Provider/PrivateRoute";
+import ForgetPassword from "../pages/ForgetPassword";
+import Profile from "../pages/Profile";
+import UpdateProfile from "../pages/UpdateProfile";
 
 const router = createBrowserRouter([
+  // 🏠 Home layout routes
   {
     path: "/",
     element: <HomeLayout />,
@@ -25,7 +30,11 @@ const router = createBrowserRouter([
       },
       {
         path: "game/:id",
-        element: <GameDetails />,
+        element: (
+          <PrivateRoute>
+            <GameDetails />
+          </PrivateRoute>
+        ),
         loader: async ({ params }) => {
           console.log("Loading game with ID:", params.id);
           const res = await fetch("/games.json");
@@ -37,27 +46,48 @@ const router = createBrowserRouter([
           return game;
         },
       },
+      {
+        path: "profile",
+        element: (
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "update-profile",
+        element: (
+          <PrivateRoute>
+            <UpdateProfile />
+          </PrivateRoute>
+        ),
+      },
     ],
   },
 
-
+  // 🔐 Auth layout routes
   {
     path: "/auth",
-    element: <AuthLayout></AuthLayout>,
+    element: <AuthLayout />,
     children: [
       {
         path: "/auth/login",
-        element: <Login></Login>,
+        element: <Login />,
       },
-
       {
         path: "/auth/register",
-        element: <Register></Register>,
-      }
-    ]
+        element: <Register />,
+      },
+    ],
   },
 
+  // 🔄 Forget Password
+  {
+    path: "/forget-password",
+    element: <ForgetPassword />,
+  },
 
+  //  404 Page
   {
     path: "*",
     element: (
