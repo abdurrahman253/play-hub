@@ -22,8 +22,8 @@ const Footer = () => {
     <footer className="relative mt-20 overflow-hidden bg-black">
       {/* Animated Background Effects */}
       <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-orange-500/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl" style={{ animation: 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite', animationDelay: '1s' }}></div>
+        <div className="absolute top-0 rounded-full left-1/4 w-96 h-96 bg-orange-500/20 blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-0 rounded-full right-1/4 w-96 h-96 bg-purple-500/20 blur-3xl" style={{ animation: 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite', animationDelay: '1s' }}></div>
       </div>
 
       {/* Gradient Border Top */}
@@ -48,7 +48,7 @@ const Footer = () => {
               <motion.div
                 key={idx}
                 variants={itemVariants}
-                className="flex flex-col items-center gap-2 p-4 transition-all duration-300 rounded-lg bg-gradient-to-br from-gray-900/50 to-transparent border border-gray-800/50 hover:border-orange-500/50 hover:shadow-lg hover:shadow-orange-500/20"
+                className="flex flex-col items-center gap-2 p-4 transition-all duration-300 border rounded-lg bg-gradient-to-br from-gray-900/50 to-transparent border-gray-800/50 hover:border-orange-500/50 hover:shadow-lg hover:shadow-orange-500/20"
               >
                 <stat.icon className="text-3xl text-orange-500" />
                 <div className="text-2xl font-bold text-white">{stat.value}</div>

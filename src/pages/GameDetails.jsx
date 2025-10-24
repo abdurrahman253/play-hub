@@ -1,19 +1,28 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useLoaderData, Link } from "react-router-dom";
 import { FaStar, FaDownload, FaArrowLeft } from "react-icons/fa";
+import { AuthContext } from "../Provider/AuthProvider";
+import Loading from "../pages/Loading";
+
 
 const GameDetails = () => {
   const game = useLoaderData();
 
+   const { loading } = useContext(AuthContext)
+   
+   if( loading ) {
+    return <Loading></Loading>
+   }
+
   if (!game) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[70vh] text-gray-300 px-4">
-        <h2 className="text-2xl sm:text-3xl font-bold text-orange-500 mb-4 text-center">
+        <h2 className="mb-4 text-2xl font-bold text-center text-orange-500 sm:text-3xl">
           ⚠ Game Not Found
         </h2>
         <Link
           to="/"
-          className="px-5 py-2 bg-orange-500 rounded-lg text-white font-semibold hover:bg-orange-600 transition-all text-sm sm:text-base"
+          className="px-5 py-2 text-sm font-semibold text-white transition-all bg-orange-500 rounded-lg hover:bg-orange-600 sm:text-base"
         >
           ⬅ Back to Home
         </Link>
@@ -29,7 +38,7 @@ const GameDetails = () => {
         <img
           src={game.coverPhoto}
           alt={game.title}
-          className="w-full h-56 sm:h-72 md:h-96 object-cover rounded-xl mb-6 border border-orange-400/30"
+          className="object-cover w-full h-56 mb-6 border sm:h-72 md:h-96 rounded-xl border-orange-400/30"
         />
 
         {/* Title */}
@@ -38,39 +47,39 @@ const GameDetails = () => {
         </h1>
 
         {/* Description */}
-        <p className="text-gray-300 mb-6 text-base sm:text-lg leading-relaxed text-center">
+        <p className="mb-6 text-base leading-relaxed text-center text-gray-300 sm:text-lg">
           {game.description}
         </p>
 
         {/* Info Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center text-gray-400">
+        <div className="grid grid-cols-1 gap-4 text-center text-gray-400 sm:grid-cols-3">
           <div>
-            <span className="block text-orange-400 font-semibold text-sm sm:text-base">
+            <span className="block text-sm font-semibold text-orange-400 sm:text-base">
               Category
             </span>
             <span className="text-sm sm:text-base">{game.category}</span>
           </div>
           <div>
-            <span className="block text-orange-400 font-semibold text-sm sm:text-base">
+            <span className="block text-sm font-semibold text-orange-400 sm:text-base">
               Developer
             </span>
             <span className="text-sm sm:text-base">{game.developer}</span>
           </div>
           <div>
-            <span className="block text-orange-400 font-semibold text-sm sm:text-base">
+            <span className="block text-sm font-semibold text-orange-400 sm:text-base">
               Rating
             </span>
-            <div className="flex items-center justify-center gap-1 text-yellow-400 text-sm sm:text-base">
+            <div className="flex items-center justify-center gap-1 text-sm text-yellow-400 sm:text-base">
               <FaStar /> {game.ratings}
             </div>
           </div>
         </div>
 
         {/* Buttons */}
-        <div className="flex flex-col sm:flex-row justify-center gap-4 mt-8">
+        <div className="flex flex-col justify-center gap-4 mt-8 sm:flex-row">
           <Link
             to="/"
-            className="flex items-center justify-center gap-2 px-5 py-2 bg-gray-800 rounded-lg hover:bg-gray-700 transition-all text-sm sm:text-base"
+            className="flex items-center justify-center gap-2 px-5 py-2 text-sm transition-all bg-gray-800 rounded-lg hover:bg-gray-700 sm:text-base"
           >
             <FaArrowLeft /> Back
           </Link>
@@ -79,7 +88,7 @@ const GameDetails = () => {
             href={game.downloadLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 px-5 py-2 bg-orange-500 rounded-lg hover:bg-orange-600 transition-all font-semibold text-sm sm:text-base"
+            className="flex items-center justify-center gap-2 px-5 py-2 text-sm font-semibold transition-all bg-orange-500 rounded-lg hover:bg-orange-600 sm:text-base"
           >
             <FaDownload /> Play Now
           </a>

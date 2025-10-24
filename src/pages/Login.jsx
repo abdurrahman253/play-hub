@@ -1,42 +1,49 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
-import { FaGoogle, FaLock, FaEnvelope } from "react-icons/fa";
+import { FaGoogle, FaLock, FaEnvelope, FaSpinner } from "react-icons/fa";
 import { GoogleAuthProvider, signInWithPopup, getAuth } from "firebase/auth";
 import app from "../Firebase/Firebase.config";
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
   const [error, setError] = useState("");
+  const [isEmailLoading, setIsEmailLoading] = useState(false);
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
   const provider = new GoogleAuthProvider();
   const auth = getAuth(app);
 
-  // 🔹 Handle Email/Password Login
+  //  Handle Email/Password Login
   const handleLogin = async (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
     setError("");
-
+    setIsEmailLoading(true)
     try {
       await signIn(email, password);
       navigate(from, { replace: true });
     } catch (err) {
       setError(err.message);
-    }
+    } finally {
+    setIsEmailLoading(false);
+   }
   };
 
-  // 🔹 Handle Google Login
+  //  Handle Google Login
   const handleGoogleLogin = async () => {
+    setIsGoogleLoading(true);
     try {
       await signInWithPopup(auth, provider);
       navigate(from, { replace: true });
     } catch (err) {
       setError(err.message);
+    } finally {
+    setIsGoogleLoading(false); // <-- STOP LOADING
     }
   };
 
@@ -103,18 +110,24 @@ const Login = () => {
           {/* Login Button */}
           <button
             type="submit"
+            disabled={isEmailLoading} 
             className="w-full py-2 font-bold text-black transition-all duration-300 bg-orange-500 rounded-lg hover:bg-orange-600 hover:scale-[1.02]"
           >
-            Login
+            {isEmailLoading ? <FaSpinner className="animate-spin"/> : "Login"}
           </button>
         </form>
 
         {/* Google Login */}
         <button
           onClick={handleGoogleLogin}
+          disabled={isGoogleLoading}
           className="flex items-center justify-center w-full gap-2 py-2 mt-3 font-semibold text-white transition-all duration-300 bg-gray-800 rounded-lg hover:bg-gray-700"
         >
-          <FaGoogle className="text-orange-400" /> Continue with Google
+          {isGoogleLoading ? <FaSpinner className="animate-spin" /> : (
+            <>
+              <FaGoogle className="text-orange-400" /> Continue with Google
+            </>
+          )}
         </button>
 
         {/* Register Link */}

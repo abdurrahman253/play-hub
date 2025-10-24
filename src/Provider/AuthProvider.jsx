@@ -1,39 +1,41 @@
-// ✅ Import all necessary dependencies
 import React, { createContext, useEffect, useState } from "react";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  onAuthStateChanged,
-  signOut,
-  updateProfile,
-  getAuth,
+import { 
+  createUserWithEmailAndPassword, 
+  getAuth, 
+  onAuthStateChanged, 
+  signInWithEmailAndPassword, 
+  signOut, 
+  updateProfile, 
+  sendPasswordResetEmail 
 } from "firebase/auth";
-import app from "../Firebase/Firebase.config"; // your Firebase config file
+import app from "../Firebase/Firebase.config";
 
-// ✅ Create Context
-export const AuthContext = createContext(null);
-
-// ✅ Initialize Firebase Auth
+export const AuthContext = createContext();
 const auth = getAuth(app);
 
-// ✅ AuthProvider Component
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // ✅ Create New User
+  // ✅ Create User
   const createUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
-  // ✅ Login Existing User
+  // ✅ Login User
   const signIn = (email, password) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  // ✅ Update User Profile (name, photo)
+  // ✅ Logout
+  const logOut = () => {
+    setLoading(true);
+    return signOut(auth);
+  };
+
+  // ✅ Update user profile
   const updateUserProfile = (name, photoURL) => {
     return updateProfile(auth.currentUser, {
       displayName: name,
@@ -41,13 +43,13 @@ const AuthProvider = ({ children }) => {
     });
   };
 
-  // ✅ Logout User
-  const logOut = () => {
+  // ✅ 🔥 Add this new function
+  const resetPassword = (email) => {
     setLoading(true);
-    return signOut(auth);
+    return sendPasswordResetEmail(auth, email);
   };
 
-  // ✅ Listen for Auth State Changes
+  // ✅ Observe user state
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
@@ -56,7 +58,6 @@ const AuthProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
-  // ✅ All Auth Functions in One Place
   const authInfo = {
     user,
     loading,
@@ -64,11 +65,15 @@ const AuthProvider = ({ children }) => {
     signIn,
     logOut,
     updateUserProfile,
+    resetPassword, // ✅ Include here
   };
 
   return (
-    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={authInfo}>
+      {children}
+    </AuthContext.Provider>
   );
 };
 
 export default AuthProvider;
+

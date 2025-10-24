@@ -7,19 +7,22 @@ const UpdateProfile = () => {
   const { user } = useContext(AuthContext);
   const [name, setName] = useState(user?.displayName || "");
   const [photoURL, setPhotoURL] = useState(user?.photoURL || "");
+  const [isUpdating, setIsUpdating] = useState(false);
   const navigate = useNavigate();
   const auth = getAuth();
 
-  const handleUpdate = (e) => {
-    e.preventDefault();
+ const handleUpdate = (e) => {
+  e.preventDefault();
+  setIsUpdating(true); 
 
-    updateProfile(auth.currentUser, { displayName: name, photoURL: photoURL })
-      .then(() => {
-        alert("Profile updated successfully!");
-        navigate("/profile");
-      })
-      .catch((error) => alert(error.message));
-  };
+  updateProfile(auth.currentUser, { displayName: name, photoURL: photoURL })
+    .then(() => {
+      alert("Profile updated successfully!");
+      navigate("/profile");
+    })
+    .catch((error) => alert(error.message))
+    .finally(() => setIsUpdating(false)); 
+};
 
   return (
     <div className="flex justify-center items-center h-[80vh]">
@@ -41,13 +44,13 @@ const UpdateProfile = () => {
           value={photoURL}
           onChange={(e) => setPhotoURL(e.target.value)}
         />
-
         <button
           type="submit"
-          className="w-full py-2 text-white bg-blue-500 rounded hover:bg-blue-600"
-        >
-          Update Information
-        </button>
+          disabled={isUpdating} 
+          className="flex items-center justify-center w-full py-2 text-white bg-blue-500 rounded hover:bg-blue-600"
+         >
+          {isUpdating ? <FaSpinner className="animate-spin" /> : "Update Information"}
+       </button>
       </form>
     </div>
   );

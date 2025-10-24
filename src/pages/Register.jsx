@@ -1,24 +1,27 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
-import { FaUser, FaEnvelope, FaLock, FaImage, FaGoogle } from "react-icons/fa";
+import { FaUser, FaEnvelope, FaLock, FaImage, FaGoogle, FaSpinner } from "react-icons/fa";
 import { GoogleAuthProvider, signInWithPopup, getAuth } from "firebase/auth";
 import app from "../Firebase/Firebase.config";
 
 const Register = () => {
   const { createUser, updateUserProfile } = useContext(AuthContext);
   const [error, setError] = useState("");
+  const [isEmailLoading, setIsEmailLoading] = useState(false);
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
   const navigate = useNavigate();
   const provider = new GoogleAuthProvider();
   const auth = getAuth(app);
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {  // ⚡ Added 'async' here
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
     const email = form.email.value;
     const photo = form.photo.value;
     const password = form.password.value;
+    setError("");
 
     // Password validation
     if (!/(?=.*[A-Z])/.test(password)) {
@@ -30,18 +33,32 @@ const Register = () => {
     if (password.length < 6) {
       return setError("Password must be at least 6 characters long.");
     }
+     
+    setIsEmailLoading(true);
+    
+    try {
+        const userCredential = await createUser(email, password);
+        await updateUserProfile(name, photo);
+        navigate("/");
+      } catch (err) {
+         setError(err.message);
+      } finally {
+            setIsEmailLoading(false);
+        }
+  };  // ⚡ Added missing closing brace
 
-    createUser(email, password)
-      .then(() => {
-        updateUserProfile(name, photo).then(() => navigate("/"));
-      })
-      .catch((err) => setError(err.message));
-  };
+  const handleGoogleRegister = async () => { 
+    setError("");
+    setIsGoogleLoading(true);
 
-  const handleGoogleRegister = () => {
-    signInWithPopup(auth, provider)
-      .then(() => navigate("/"))
-      .catch((err) => setError(err.message));
+    try { 
+      await signInWithPopup(auth, provider);
+      navigate("/");
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setIsGoogleLoading(false);
+    }
   };
 
   return (
@@ -116,17 +133,23 @@ const Register = () => {
 
           <button
             type="submit"
-            className="w-full py-2 font-bold text-black transition-all bg-orange-500 rounded-lg hover:bg-orange-600"
+            disabled={isEmailLoading || isGoogleLoading}
+            className="flex items-center justify-center w-full gap-2 py-2 font-bold text-black transition-all bg-orange-500 rounded-lg hover:bg-orange-600 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Register
+            {isEmailLoading ? <FaSpinner className="text-lg animate-spin"/> : "Register"} 
           </button>
         </form>
 
         <button
           onClick={handleGoogleRegister}
-          className="flex items-center justify-center w-full gap-2 py-2 mt-2 font-semibold text-white transition-all bg-gray-800 rounded-lg hover:bg-gray-700"
+          disabled={isEmailLoading || isGoogleLoading} 
+          className="flex items-center justify-center w-full gap-2 py-2 mt-2 font-semibold text-white transition-all bg-gray-800 rounded-lg hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          <FaGoogle className="text-orange-400" /> Register with Google
+          {isGoogleLoading ? <FaSpinner className="text-lg animate-spin" /> : (
+            <>
+              <FaGoogle className="text-orange-400" /> Register with Google
+            </>
+          )}
         </button>
 
         <p className="text-center text-gray-400">

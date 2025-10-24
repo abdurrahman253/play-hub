@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import { Outlet } from "react-router-dom";
+import { AuthContext } from "../Provider/AuthProvider";
+import Loading from "../pages/Loading";
 
 const HomeLayout = () => {
+
+ const { loading } = useContext(AuthContext)
+ 
+ if( loading ) {
+  return <Loading></Loading>;
+ }
   return (
     <div className="flex flex-col min-h-screen text-white bg-gradient-to-b from-black via-gray-900 to-black">
       {/* Navbar Section */}
@@ -12,8 +20,8 @@ const HomeLayout = () => {
       </header>
 
       {/* Main Page Content - Added pt-24 to create space for fixed navbar */}
-      <main className="flex-grow w-11/12 py-6 mx-auto md:py-10 pt-24">
-        <Outlet />
+      <main className="flex-grow w-11/12 py-6 pt-24 mx-auto md:py-10">
+       <Outlet />
       </main>
 
       {/* Footer Section */}

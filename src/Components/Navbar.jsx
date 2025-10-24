@@ -29,16 +29,19 @@ const Navbar = () => {
       >
         Home
       </NavLink>
-      <NavLink
-        to="/games"
-        className={({ isActive }) =>
-          `px-4 py-2 font-semibold duration-300 ${
-            isActive ? "text-orange-500" : "text-gray-200 hover:text-orange-500"
-          }`
-        }
-      >
+     <NavLink
+         to="/#popular-games-section"
+           className={() =>
+              `px-4 py-2 font-semibold duration-300 ${
+             window.location.pathname === '/' && window.location.hash === '#popular-games-section'
+              ? "text-orange-500"
+              : "text-gray-200 hover:text-orange-500"
+             }`
+            }
+          onClick={() => setIsOpen(false)} // Close mobile menu on click
+       >
         Games
-      </NavLink>
+    </NavLink>
       <NavLink
         to="/about"
         className={({ isActive }) =>
