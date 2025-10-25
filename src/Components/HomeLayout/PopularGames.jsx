@@ -163,7 +163,7 @@ const PopularGames = ({ games }) => {
           ))}
         </div>
 
-        {/* Load More Button (Optional) */}
+        {/* Load More Button  */}
         <div className="flex justify-center mt-12">
           <button className="group px-8 py-3 font-semibold text-white transition-all duration-300 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg hover:bg-orange-500 hover:border-orange-500 hover:scale-105">
             <span className="flex items-center gap-2">

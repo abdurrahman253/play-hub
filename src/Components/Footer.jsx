@@ -97,7 +97,7 @@ const Footer = () => {
             </div>
           </motion.div>
 
-          {/* Quick Links */}
+          {/* Links */}
           <motion.div variants={itemVariants} className="space-y-4">
             <h2 className="text-sm font-bold tracking-wider text-white uppercase">
               Quick Links

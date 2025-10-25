@@ -10,9 +10,9 @@ import ForgetPassword from "../pages/ForgetPassword";
 import Profile from "../pages/Profile";
 import UpdateProfile from "../pages/UpdateProfile";
 import NotFound from "../pages/NotFound";
+import Leaderboard from "../pages/Leaderboard"; 
 
 const router = createBrowserRouter([
-  //  Home layout routes
   {
     path: "/",
     element: <HomeLayout />,
@@ -22,9 +22,7 @@ const router = createBrowserRouter([
         element: <Home />,
         loader: async () => {
           const res = await fetch("/games.json");
-          if (!res.ok) {
-            throw new Error("Failed to load games.json");
-          }
+          if (!res.ok) throw new Error("Failed to load games.json");
           return res.json();
         },
       },
@@ -36,15 +34,17 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: async ({ params }) => {
-          console.log("Loading game with ID:", params.id);
           const res = await fetch("/games.json");
           if (!res.ok) throw new Error("Failed to load games.json");
           const games = await res.json();
           const game = games.find((g) => g.id === params.id);
-          console.log("Found game:", game);
           if (!game) throw new Response("Game Not Found", { status: 404 });
           return game;
         },
+      },
+      {
+        path: "leaderboard", 
+        element: <Leaderboard />,
       },
       {
         path: "profile",
@@ -65,32 +65,26 @@ const router = createBrowserRouter([
     ],
   },
 
-  // Auth layout routes
+  // Auth Layout Routes
   {
     path: "/auth",
     element: <AuthLayout />,
     children: [
-      {
-        path: "/auth/login",
-        element: <Login />,
+      { path: "/auth/login",
+        element: <Login /> 
       },
-      {
-        path: "/auth/register",
-        element: <Register />,
+      { path: "/auth/register", 
+        element: <Register /> 
       },
     ],
   },
 
-  // Forget Password
-  {
-    path: "/forget-password",
-    element: <ForgetPassword />,
+  { path: "/forget-password", 
+    element: <ForgetPassword /> 
   },
 
-  //  404 Page
-  {
-    path: "*",
-    element: <NotFound></NotFound>,
+  { path: "*", 
+    element: <NotFound /> 
   },
 ]);
 

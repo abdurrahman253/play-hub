@@ -1,14 +1,14 @@
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
-import { getAuth, sendPasswordResetEmail } from "firebase/auth"; // ✅ Import getAuth
-import app from "../Firebase/Firebase.config"; // ✅ Import your Firebase app
+import { getAuth, sendPasswordResetEmail } from "firebase/auth"; 
+import app from "../Firebase/Firebase.config"; 
 import { Link } from "react-router-dom";
 import { FaSpinner } from "react-icons/fa";
 
 const ForgetPassword = () => {
   const { user } = useContext(AuthContext);
-  const auth = getAuth(app); // ✅ Create auth instance
-  const [email, setEmail] = useState(user?.email || ""); // Auto-fill if logged in
+  const auth = getAuth(app); 
+  const [email, setEmail] = useState(user?.email || ""); 
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -36,13 +36,14 @@ const ForgetPassword = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-[85vh] px-4 bg-gradient-to-b from-black via-gray-900 to-black">
+    <div className="flex items-center justify-center min-h-screen px-4 bg-gradient-to-b from-black via-gray-950 to-black
+    ">
       <div className="w-full max-w-md p-8 space-y-6 border shadow-xl bg-white/10 rounded-2xl backdrop-blur-md border-orange-500/30">
         <h2 className="text-3xl font-extrabold text-center text-orange-400">
           Reset Your Password 🔒
         </h2>
         <p className="text-sm text-center text-gray-400">
-          Enter your account email and we’ll send you a reset link.
+          Enter your account email and we'll send you a reset link.
         </p>
 
         <form onSubmit={handleReset} className="space-y-4">
@@ -69,7 +70,7 @@ const ForgetPassword = () => {
           )}
           <button
             type="submit"
-            disabled={isSubmitting} // <-- Disable while submitting
+            disabled={isSubmitting} 
             className="w-full py-2 font-bold text-black transition-all duration-300 bg-orange-500 rounded-lg hover:bg-orange-600 hover:scale-[1.02] flex items-center justify-center"
           >
            {isSubmitting ? <FaSpinner className="animate-spin" /> : "Send Reset Link"}

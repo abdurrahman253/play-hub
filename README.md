@@ -268,26 +268,6 @@ PlayHub/
 
 ---
 
-## 📸 Screenshots
-
-### 🏠 Home Page
-![Home Page](https://via.placeholder.com/800x400/0a0a0a/ff6600?text=PlayHub+Home+Page)
-*Ultimate gaming experience with animated hero section*
-
-### 🎮 Popular Games Section
-![Games Section](https://via.placeholder.com/800x400/0a0a0a/ff6600?text=Top+Rated+Games)
-*Browse 100+ premium games with ratings*
-
-### 🔐 Login/Register
-![Authentication](https://via.placeholder.com/800x400/0a0a0a/ff6600?text=Secure+Authentication)
-*Secure authentication with Google sign-in*
-
-### 📱 Responsive Design
-![Mobile View](https://via.placeholder.com/400x600/0a0a0a/ff6600?text=Mobile+Responsive)
-*Perfect experience on all devices*
-
----
-
 ## 🎯 Usage
 
 ### For Users
@@ -388,7 +368,7 @@ This project is licensed under the **MIT License**.
 
 ### ⭐ Don't forget to star this repo if you found it helpful!
 
-**Made with ❤️ by the PlayHub Team**
+**Made with ❤️ by Abdur rahman**
 
 [⬆ Back to Top](#-playhub---ultimate-gaming-platform)
 

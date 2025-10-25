@@ -12,18 +12,18 @@ const HomeLayout = () => {
  if( loading ) {
   return <Loading></Loading>;
  }
-  return (
+  return ( 
     <div className="flex flex-col min-h-screen text-white bg-gradient-to-b from-black via-gray-900 to-black">
       {/* Navbar Section */}
       <header className="sticky top-0 z-50">
         <Navbar />
       </header>
 
-      {/* Main Page Content - Added pt-24 to create space for fixed navbar */}
+      {/* Main Page Content  */}
       <main className="flex-grow w-11/12 py-6 pt-24 mx-auto md:py-10">
        <Outlet />
       </main>
-
+      
       {/* Footer Section */}
       <footer>
         <Footer />

@@ -42,7 +42,7 @@ const Banner = () => {
 
         <div className="container relative z-10 flex flex-col items-center gap-8 mx-auto lg:flex-row lg:gap-12 max-w-7xl">
           
-          {/* ---------- LEFT TEXT SECTION ---------- */}
+          {/*  LEFT TEXT SECTION */}
           <div className="flex flex-col flex-1 gap-6 text-center lg:text-left order-2 lg:order-1 w-full">
             <div className="space-y-2 min-h-[140px] sm:min-h-[200px] md:min-h-[220px] lg:min-h-[240px]">
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight">
@@ -84,7 +84,7 @@ const Banner = () => {
               </button>
             </div>
 
-            {/* Stats Section - Mobile/Tablet */}
+            {/* Stats Section - mobile / tablet */}
             <div className="grid grid-cols-3 gap-4 mt-6 lg:hidden">
               <div className="p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 text-center">
                 <h4 className="text-2xl font-bold text-orange-400">50K+</h4>
@@ -101,7 +101,7 @@ const Banner = () => {
             </div>
           </div>
 
-          {/* ---------- CENTER HERO IMAGE ---------- */}
+          {/*  CENTER HERO IMAGE  */}
           <div className="relative flex-1 w-full max-w-md lg:max-w-lg order-1 lg:order-2">
             <div className="relative">
               {/* Glow Effect Behind Hero */}
@@ -128,7 +128,7 @@ const Banner = () => {
             </div>
           </div>
 
-          {/* ---------- RIGHT GLASS CARD - WINNERS ---------- */}
+          {/*  RIGHT GLASS CARD - WINNERS*/}
           <div className="flex flex-col flex-1 w-full gap-4 p-5 md:p-6 border shadow-2xl bg-black/40 backdrop-blur-xl border-white/10 rounded-2xl shadow-orange-500/20 order-3 max-w-md lg:max-w-sm">
             
             {/* Header */}

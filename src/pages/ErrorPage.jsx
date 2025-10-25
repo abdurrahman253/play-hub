@@ -14,7 +14,7 @@ const ErrorPage = ({ error }) => {
       <main className="flex flex-col items-center justify-center flex-grow px-6 py-10 text-center">
         {/* Animated Error Image */}
         <motion.img
-          src="https://i.ibb.co/W2VqR0x/404-gaming.png" // ⚡ You can replace with your own gaming-style 404 image
+          src="https://i.ibb.co/W2VqR0x/404-gaming.png"
           alt="Error 404"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}

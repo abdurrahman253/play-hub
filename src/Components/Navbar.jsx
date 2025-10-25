@@ -31,6 +31,7 @@ const Navbar = () => {
       >
         Home
       </NavLink>
+
       <NavLink
         to="/#popular-games-section"
         className={() =>
@@ -45,6 +46,7 @@ const Navbar = () => {
       >
         Games
       </NavLink>
+
       <NavLink
         to="/#newsletter-section"
         className={() =>
@@ -59,6 +61,23 @@ const Navbar = () => {
       >
         Subscribe
       </NavLink>
+
+     
+      {user && (
+        <NavLink
+          to="/leaderboard"
+          className={({ isActive }) =>
+            `px-4 py-2 font-semibold duration-300 rounded-lg ${
+              isActive
+                ? "text-orange-400 bg-orange-500/10"
+                : "text-gray-200 hover:text-orange-400 hover:bg-white/5"
+            }`
+          }
+          onClick={() => setIsOpen(false)}
+        >
+          Leaderboard
+        </NavLink>
+      )}
     </>
   );
 
@@ -72,17 +91,17 @@ const Navbar = () => {
       <div className="flex items-center justify-between w-11/12 py-4 mx-auto max-w-7xl">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-4 group">
-          <img 
-    src="	https://gameplexnext.softivuslab.com/_next/static/media/favicon.395cfa38.png" 
-    alt="PlayHub Logo" 
-    className="w-10 h-10 transition-all duration-300 group-hover:scale-110 drop-shadow-lg"
-  />
+          <img
+            src="https://gameplexnext.softivuslab.com/_next/static/media/favicon.395cfa38.png"
+            alt="PlayHub Logo"
+            className="w-10 h-10 transition-all duration-300 group-hover:scale-110 drop-shadow-lg"
+          />
           <h1 className="text-2xl font-extrabold tracking-wide text-white">
             Play<span className="text-orange-400">Hub</span>
           </h1>
         </Link>
 
-        {/* Desktop Navigation */}
+        {/*  Desktop Navigation */}
         <div className="items-center hidden gap-2 md:flex">
           {navLinks}
 
@@ -103,7 +122,7 @@ const Navbar = () => {
             </div>
           ) : (
             <div className="relative ml-4">
-              {/* Profile Avatar */}
+              {/*  Profile Avatar */}
               <button
                 onClick={() => setShowDropdown(!showDropdown)}
                 className="focus:outline-none group"
@@ -115,11 +134,14 @@ const Navbar = () => {
                     className="w-10 h-10 duration-300 border-2 rounded-full shadow-lg border-orange-400/50 group-hover:border-orange-400 group-hover:scale-110"
                   />
                 ) : (
-                  <FaUserCircle className="text-orange-400 transition-transform group-hover:scale-110" size={40} />
+                  <FaUserCircle
+                    className="text-orange-400 transition-transform group-hover:scale-110"
+                    size={40}
+                  />
                 )}
               </button>
 
-              {/* Dropdown Menu */}
+              {/*  Dropdown Menu */}
               {showDropdown && (
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
@@ -142,6 +164,7 @@ const Navbar = () => {
                     </p>
                     <p className="mt-1 text-xs text-gray-400">{user.email}</p>
                   </div>
+
                   <div className="flex flex-col p-2">
                     <button
                       onClick={() => {
@@ -153,6 +176,7 @@ const Navbar = () => {
                       <span>⚙️</span>
                       <span className="font-medium">Update Profile</span>
                     </button>
+
                     <button
                       onClick={handleLogout}
                       className="flex items-center gap-3 px-4 py-3 text-left text-orange-400 duration-200 rounded-lg hover:text-white hover:bg-red-500/20"
@@ -167,7 +191,7 @@ const Navbar = () => {
           )}
         </div>
 
-        {/* Mobile Menu Button */}
+        {/*  Mobile Menu Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="text-white transition-transform md:hidden hover:scale-110"

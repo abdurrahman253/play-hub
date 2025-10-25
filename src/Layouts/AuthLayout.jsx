@@ -14,7 +14,7 @@ const AuthLayout = () => {
         <Navbar />
       </header>
 
-      {/* Main Page Content - Added pt-24 to create space for fixed navbar */}
+      {/* Main Page Content */}
       <main className="flex-grow w-11/12 py-6 pt-24 mx-auto md:py-10">
         <Outlet />
       </main>

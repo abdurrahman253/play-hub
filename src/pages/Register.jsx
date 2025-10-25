@@ -14,7 +14,7 @@ const Register = () => {
   const provider = new GoogleAuthProvider();
   const auth = getAuth(app);
 
-  const handleRegister = async (e) => {  // ⚡ Added 'async' here
+  const handleRegister = async (e) => {  
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
@@ -45,7 +45,7 @@ const Register = () => {
       } finally {
             setIsEmailLoading(false);
         }
-  };  // ⚡ Added missing closing brace
+  };  
 
   const handleGoogleRegister = async () => { 
     setError("");

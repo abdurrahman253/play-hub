@@ -17,39 +17,38 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // ✅ Create User
+  // Create User
   const createUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
-  // ✅ Login User
+  //  Login User
   const signIn = (email, password) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  // ✅ Logout
+  //  Logout
   const logOut = () => {
     setLoading(true);
     return signOut(auth);
   };
 
-  // ✅ Update user profile
+  //  Update user profile
   const updateUserProfile = (name, photoURL) => {
     return updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: photoURL,
     });
   };
-
-  // ✅ 🔥 Add this new function
+   // reset pass
   const resetPassword = (email) => {
     setLoading(true);
     return sendPasswordResetEmail(auth, email);
   };
 
-  // ✅ Observe user state
+  // Observe user state
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
@@ -65,7 +64,7 @@ const AuthProvider = ({ children }) => {
     signIn,
     logOut,
     updateUserProfile,
-    resetPassword, // ✅ Include here
+    resetPassword, 
   };
 
   return (

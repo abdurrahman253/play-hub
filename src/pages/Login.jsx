@@ -43,7 +43,7 @@ const Login = () => {
     } catch (err) {
       setError(err.message);
     } finally {
-    setIsGoogleLoading(false); // <-- STOP LOADING
+    setIsGoogleLoading(false); // STOP LOADING
     }
   };
 
@@ -109,12 +109,13 @@ const Login = () => {
 
           {/* Login Button */}
           <button
-            type="submit"
-            disabled={isEmailLoading} 
-            className="w-full py-2 font-bold text-black transition-all duration-300 bg-orange-500 rounded-lg hover:bg-orange-600 hover:scale-[1.02]"
+           type="submit"
+           disabled={isEmailLoading}
+           className="w-full flex items-center justify-center py-2 font-bold text-black transition-all duration-300 bg-orange-500 rounded-lg hover:bg-orange-600 hover:scale-[1.02]"
           >
-            {isEmailLoading ? <FaSpinner className="animate-spin"/> : "Login"}
-          </button>
+           {isEmailLoading ? <FaSpinner className="animate-spin" /> : "Login"}
+         </button>
+
         </form>
 
         {/* Google Login */}
