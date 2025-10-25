@@ -39,7 +39,7 @@ const ErrorPage = ({ error }) => {
           transition={{ delay: 0.3 }}
           className="mb-3 text-base text-gray-300 md:text-lg"
         >
-          Looks like this level (page) doesn’t exist.
+          Looks like this level (page) doesn't exist.
         </motion.p>
 
         <p className="mb-6 text-sm text-gray-500 md:text-base">
@@ -55,7 +55,7 @@ const ErrorPage = ({ error }) => {
             to="/"
             className="px-8 py-3 font-bold transition-all duration-300 rounded-full shadow-lg bg-gradient-to-r from-orange-600 to-orange-400 hover:shadow-orange-500/50"
           >
-            🎮 Back to Home
+             Back to Home
           </Link>
         </motion.div>
       </main>
