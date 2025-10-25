@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import { FaGoogle, FaLock, FaEnvelope, FaSpinner } from "react-icons/fa";
@@ -15,6 +15,10 @@ const Login = () => {
   const from = location.state?.from?.pathname || "/";
   const provider = new GoogleAuthProvider();
   const auth = getAuth(app);
+
+  useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
   //  Handle Email/Password Login
   const handleLogin = async (e) => {
@@ -43,7 +47,7 @@ const Login = () => {
     } catch (err) {
       setError(err.message);
     } finally {
-    setIsGoogleLoading(false); // STOP LOADING
+    setIsGoogleLoading(false); 
     }
   };
 

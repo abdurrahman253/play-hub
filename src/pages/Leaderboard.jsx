@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { FaTrophy, FaCrown, FaMedal, FaSpinner } from "react-icons/fa";
+import Loading from "./Loading";
 
 const Leaderboard = () => {
   const [players, setPlayers] = useState([]);
   const [loading, setLoading] = useState(true);
+
+
+  useEffect(() => {
+     window.scrollTo(0, 0);
+    }, []);
 
 
   useEffect(() => {
@@ -36,18 +42,9 @@ const Leaderboard = () => {
     return "hover:bg-gray-800/50";
   };
 
-  if (loading) {
-    return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-gray-900 via-black/50 to-gray-900 text-white px-4 py-12 sm:py-16">
-        <div className="animate-spin-slow text-4xl sm:text-5xl md:text-6xl mb-6 sm:mb-8 bg-gradient-to-r from-orange-400 via-red-500 to-purple-600 bg-clip-text text-transparent animate-pulse-slow">
-          <FaTrophy />
-        </div>
-        <div className="text-xl sm:text-2xl md:text-3xl font-bold tracking-widest animate-fade-in text-center px-4">
-          Loading Elite Rankings...
-        </div>
-      </div>
-    );
-  }
+   if (loading) {
+    return <Loading />
+   }
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-start sm:justify-center py-8 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-900 via-black/30 to-gray-900/50 relative">

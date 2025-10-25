@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import { FaUser, FaEnvelope, FaLock, FaImage, FaGoogle, FaSpinner } from "react-icons/fa";
@@ -13,6 +13,10 @@ const Register = () => {
   const navigate = useNavigate();
   const provider = new GoogleAuthProvider();
   const auth = getAuth(app);
+
+  useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
   const handleRegister = async (e) => {  
     e.preventDefault();
