@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { FaTrophy, FaCrown, FaMedal, FaSpinner } from "react-icons/fa";
-import Loading from "./Loading";
 
 const Leaderboard = () => {
   const [players, setPlayers] = useState([]);
@@ -42,9 +41,36 @@ const Leaderboard = () => {
     return "hover:bg-gray-800/50";
   };
 
-   if (loading) {
-    return <Loading />
-   }
+ if (loading) {
+  return (
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-gray-950 via-gray-900 to-black text-white px-6">
+      {/* Glowing Trophy Icon */}
+      <div className="relative mb-8">
+        <div className="absolute inset-0 blur-3xl bg-gradient-to-r from-orange-500 via-pink-600 to-purple-700 opacity-40 animate-pulse"></div>
+        <FaTrophy className="relative text-6xl sm:text-7xl text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-500 animate-bounce" />
+      </div>
+
+      {/* Loading Text */}
+      <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-wide text-center">
+        Loading <span className="text-orange-400">Elite Rankings</span>...
+      </h2>
+
+      {/* Animated Loading Bar */}
+      <div className="w-56 sm:w-64 md:w-72 h-2 mt-8 bg-gray-700 rounded-full overflow-hidden">
+        <div className="h-full w-1/3 bg-gradient-to-r from-orange-400 via-red-500 to-purple-600 animate-[loading_1.5s_linear_infinite]" />
+      </div>
+
+      {/* Custom animation keyframes */}
+      <style>{`
+        @keyframes loading {
+          0% { transform: translateX(-100%); }
+          100% { transform: translateX(300%); }
+        }
+      `}</style>
+    </div>
+  );
+}
+
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-start sm:justify-center py-8 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-900 via-black/30 to-gray-900/50 relative">
